@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Calculadora Digital Conde</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="tema-escuro">
+        <!-- Cabeçalho com informações -->
+        <header class="header">
+            <div class="info-superior">
+                <div class="info-item">
+                    <span id="dataDisplay">00/00/0000</span>
+                    <span id="diaSemana">Segunda</span>
+                </div>
+                <div class="info-item">
+                    <span id="horaDisplay">00:00:00</span>
+                    <span id="bateriaDisplay">🔋 100%</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Display do Resultado -->
+        <section class="display-calc">
+            <div id="resultadoDisplay" class="display-resultado">0</div>
+            <div id="expressaoDisplay" class="display-expressao"></div>
+        </section>
+
+        <!-- Histórico -->
+        <div class="historico-container">
+            <div class="historico-header">
+                <span>📜 Histórico</span>
+                <button id="limparHistorico" class="btn-pequeno">Limpar</button>
+            </div>
+            <div id="historicoLista" class="historico-lista"></div>
+        </div>
+
+        <!-- Teclado -->
+        <main class="calculadora">
+            <!-- Modos -->
+            <div class="modo-selector">
+                <button id="modoComum" class="modo-btn active">Comum</button>
+                <button id="modoCientifico" class="modo-btn">Científico</button>
+            </div>
+
+            <div class="teclado">
+                <!-- Memória -->
+                <button class="btn-memoria" data-op="mc">MC</button>
+                <button class="btn-memoria" data-op="mr">MR</button>
+                <button class="btn-memoria" data-op="mplus">M+</button>
+                <button class="btn-memoria" data-op="mminus">M-</button>
+
+                <!-- Linha 1 -->
+                <button class="btn-operator" data-op="clear">C</button>
+                <button class="btn-operator" data-op="backspace">⌫</button>
+                <button class="btn-operator" data-op="percent">%</button>
+                <button class="btn-operator" data-op="divide">÷</button>
+                
+                <!-- Linha 2 -->
+                <button class="btn-number" data-num="7">7</button>
+                <button class="btn-number" data-num="8">8</button>
+                <button class="btn-number" data-num="9">9</button>
+                <button class="btn-operator" data-op="multiply">×</button>
+                
+                <!-- Linha 3 -->
+                <button class="btn-number" data-num="4">4</button>
+                <button class="btn-number" data-num="5">5</button>
+                <button class="btn-number" data-num="6">6</button>
+                <button class="btn-operator" data-op="subtract">−</button>
+                
+                <!-- Linha 4 -->
+                <button class="btn-number" data-num="1">1</button>
+                <button class="btn-number" data-num="2">2</button>
+                <button class="btn-number" data-num="3">3</button>
+                <button class="btn-operator" data-op="add">+</button>
+                
+                <!-- Linha 5 -->
+                <button class="btn-parenthesis" data-op="lparen">(</button>
+                <button class="btn-number" data-num="0">0</button>
+                <button class="btn-number" data-num=".">.</button>
+                <button class="btn-operator" data-op="equals">=</button>
+
+                <!-- Botões Científicos -->
+                <div id="cientificoButtons" class="cientifico-buttons" style="display: none;">
+                    <button class="btn-science" data-op="sin">sin</button>
+                    <button class="btn-science" data-op="cos">cos</button>
+                    <button class="btn-science" data-op="tan">tan</button>
+                    <button class="btn-science" data-op="log">log</button>
+                    <button class="btn-science" data-op="ln">ln</button>
+                    <button class="btn-science" data-op="sqrt">√</button>
+                    <button class="btn-science" data-op="square">x²</button>
+                    <button class="btn-science" data-op="cube">x³</button>
+                    <button class="btn-science" data-op="power">xʸ</button>
+                    <button class="btn-science" data-op="factorial">x!</button>
+                    <button class="btn-science" data-op="inv">1/x</button>
+                    <button class="btn-science" data-op="pi">π</button>
+                    <button class="btn-science" data-op="euler">e</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bloco de Notas -->
+        <section class="bloco-notas">
+            <div class="bloco-header">
+                <span>📝 Bloco de Notas</span>
+                <div class="bloco-acoes">
+                    <button id="salvarNota" class="btn-nota">💾 Salvar</button>
+                    <button id="abrirNota" class="btn-nota">📂 Abrir</button>
+                    <button id="exportarNota" class="btn-nota">📤 Exportar</button>
+                    <button id="importarNota" class="btn-nota">📥 Importar</button>
+                    <button id="limparNotas" class="btn-nota">🗑️ Limpar</button>
+                </div>
+            </div>
+            <div class="nota-container">
+                <textarea id="notasTextarea" placeholder="Digite suas anotações aqui..."></textarea>
+                <div class="nota-info">
+                    <span id="contadorCaracteres">0 caracteres</span>
+                    <button id="bloquearNota" class="btn-pequeno">🔒 Bloquear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurações -->
+        <section class="configuracoes">
+            <div class="config-header">
+                <span>⚙️ Configurações</span>
+                <button id="toggleConfig" class="btn-pequeno">▼</button>
+            </div>
+            <div id="configContent" class="config-content" style="display: none;">
+                <div class="config-group">
+                    <label>Tema:</label>
+                    <div class="tema-botoes">
+                        <button class="tema-btn ativo" data-tema="escuro">🌙</button>
+                        <button class="tema-btn" data-tema="claro">☀️</button>
+                        <button class="tema-btn" data-tema="azul">🔵</button>
+                        <button class="tema-btn" data-tema="verde">🟢</button>
+                        <button class="tema-btn" data-tema="vermelho">🔴</button>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <label>Tamanho da Fonte:</label>
+                    <input type="range" id="tamanhoFonte" min="14" max="32" value="20">
+                    <span id="tamanhoFonteValor">20px</span>
+                </div>
+                <div class="config-group">
+                    <label>
+                        <input type="checkbox" id="somBotoes" checked>
+                        Som dos Botões
+                    </label>
+                    <label>
+                        <input type="checkbox" id="vibracao" checked>
+                        Vibração
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <footer class="sobre">
+            <button id="abrirSobre" class="btn-sobre">ℹ️ Sobre</button>
+        </footer>
+
+        <!-- Modal Sobre -->
+        <div id="modalSobre" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="modal-fechar">&times;</span>
+                <h2>Calculadora Digital Conde</h2>
+                <p><strong>Desenvolvedor:</strong> WOLVERYNE</p>
+                <p><strong>Versão:</strong> 1.0</p>
+                <p><strong>Data:</strong> <span id="sobreData"></span></p>
+                <p>Uma calculadora profissional com recursos avançados.</p>
+            </div>
+        </div>
+
+        <!-- Modal Senha -->
+        <div id="modalSenha" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>🔒 Bloco de Notas Protegido</h3>
+                <p>Digite a senha para acessar:</p>
+                <input type="password" id="inputSenha" placeholder="Digite a senha">
+                <div class="modal-botoes">
+                    <button id="confirmarSenha" class="btn-confirmar">Confirmar</button>
+                    <button id="cancelarSenha" class="btn-cancelar">Cancelar</button>
+                </div>
+                <p id="erroSenha" style="color: red; display: none;">Senha incorreta!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
