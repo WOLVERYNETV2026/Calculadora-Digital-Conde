@@ -1,0 +1,492 @@
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #1a1a1a;
+}
+
+#app {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Temas */
+.tema-escuro {
+    background: #1e2f3f;
+    color: #eaf2f9;
+}
+
+.tema-claro {
+    background: #f0f4f8;
+    color: #1a2a3a;
+}
+
+.tema-azul {
+    background: #1a2a5e;
+    color: #b0d4ff;
+}
+
+.tema-verde {
+    background: #1a3a2a;
+    color: #b0ffc8;
+}
+
+.tema-vermelho {
+    background: #4a1a1a;
+    color: #ffc8c8;
+}
+
+/* Header */
+.header {
+    margin-bottom: 10px;
+}
+
+.info-superior {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.info-item {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Display */
+.display-calc {
+    background: rgba(0,0,0,0.4);
+    border-radius: 25px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.display-resultado {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+    min-height: 60px;
+    line-height: 1.2;
+}
+
+.display-expressao {
+    font-size: 1rem;
+    text-align: right;
+    opacity: 0.7;
+    min-height: 24px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Histórico */
+.historico-container {
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.historico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.historico-lista {
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+.historico-item {
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Modo Selector */
+.modo-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.modo-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 8px 0;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    color: inherit;
+}
+
+.modo-btn.active {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Teclado */
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.teclado button {
+    border: none;
+    border-radius: 14px;
+    padding: 16px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.1s;
+    color: inherit;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+
+.teclado button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.btn-operator {
+    background: rgba(255,165,0,0.3) !important;
+    color: #ffa500 !important;
+}
+
+.btn-operator[data-op="equals"] {
+    background: rgba(0,150,255,0.4) !important;
+    color: #00aaff !important;
+}
+
+.btn-operator[data-op="clear"] {
+    background: rgba(255,0,0,0.3) !important;
+    color: #ff6666 !important;
+}
+
+.btn-memoria {
+    background: rgba(100,100,255,0.2) !important;
+    font-size: 0.9rem !important;
+}
+
+.btn-parenthesis {
+    background: rgba(255,255,0,0.2) !important;
+    color: #ffdd00 !important;
+}
+
+/* Botões Científicos */
+.cientifico-buttons {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.btn-science {
+    background: rgba(0,200,200,0.2) !important;
+    font-size: 0.9rem !important;
+    padding: 10px 0 !important;
+    border-radius: 20px !important;
+}
+
+/* Bloco de Notas */
+.bloco-notas {
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+}
+
+.bloco-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.bloco-acoes {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.btn-nota {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: inherit;
+    transition: 0.2s;
+}
+
+.btn-nota:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.nota-container {
+    position: relative;
+}
+
+#notasTextarea {
+    width: 100%;
+    height: 80px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    color: inherit;
+    padding: 10px 12px;
+    resize: vertical;
+    outline: none;
+    font-family: 'Segoe UI', monospace;
+    font-size: 0.95rem;
+}
+
+.nota-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Configurações */
+.configuracoes {
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+.config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.config-content {
+    margin-top: 10px;
+}
+
+.config-group {
+    margin-bottom: 10px;
+}
+
+.config-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.tema-botoes {
+    display: flex;
+    gap: 8px;
+}
+
+.tema-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1.2rem;
+    background: rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.tema-btn.ativo {
+    border-color: #00aaff;
+    transform: scale(1.1);
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+/* Sobre */
+.sobre {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.btn-sobre {
+    background: transparent;
+    border: none;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px 15px;
+}
+
+/* Modais */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #2a2a3a;
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    color: #eaf2f9;
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.modal-content input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.3);
+    color: inherit;
+    margin: 10px 0;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-confirmar, .btn-cancelar {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-confirmar {
+    background: #00aaff;
+    color: white;
+}
+
+.btn-cancelar {
+    background: #666;
+    color: white;
+}
+
+.btn-pequeno {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 3px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: inherit;
+    font-size: 0.75rem;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    #app {
+        padding: 12px;
+    }
+    
+    .display-resultado {
+        font-size: 2.2rem;
+    }
+    
+    .teclado button {
+        padding: 12px 0;
+        font-size: 1.2rem;
+    }
+    
+    .info-superior {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+    
+    .info-item {
+        gap: 5px;
+    }
+    
+    .bloco-acoes {
+        gap: 3px;
+    }
+    
+    .btn-nota {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+    
+    .cientifico-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    #app {
+        max-width: 700px;
+    }
+    
+    .teclado {
+        gap: 10px;
+    }
+    
+    .teclado button {
+        padding: 20px 0;
+        font-size: 1.6rem;
+    }
+}
